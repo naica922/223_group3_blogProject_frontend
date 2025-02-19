@@ -1,15 +1,14 @@
 import React from 'react';
-
+import {Route, Routes} from 'react-router-dom';
+import HomePage from "./components/pages/HomePage";
 import './App.css';
-
-import { ActiveUserContextProvider } from './Contexts/ActiveUserContext';
-import Router from './Router/Router';
 
 function App() {
   return (
-    <ActiveUserContextProvider>
-      <Router />
-    </ActiveUserContextProvider>
+      <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<div>Not Found</div>} />
+      </Routes>
   );
 }
 
