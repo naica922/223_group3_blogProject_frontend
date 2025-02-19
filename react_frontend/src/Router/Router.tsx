@@ -4,7 +4,13 @@ import PrivateRoute from './PrivateRoute';
 import HomePage from '../components/pages/HomePage';
 import UserTable from '../components/pages/UserPage/UserTable';
 import UserPage from '../components/pages/UserPage/UserPage';
+import AdminHomePage from "../components/pages/AdminHomePage";
+import UserLoggedInHomePage from "../components/pages/UserPage/UserLoggedInHomePage";
 import authorities from '../config/Authorities';
+import GroupDetailPage from "../components/pages/GroupDetailPage";
+import GroupEditPage from "../components/pages/GroupEditPage";
+import CreateGroupFormPage from "../components/pages/CreateGroupFormPage";
+import GroupsPage from "../components/pages/GroupsPage";
 
 /**
  * Router component renders a route switch with all available pages
@@ -42,6 +48,60 @@ const Router = () => {
           ></PrivateRoute>
         }
       />
+      <Route
+          path='/userHome'
+          element={
+              <PrivateRoute
+                  requiredAuths={[]}
+                  element={<UserLoggedInHomePage />}
+              ></PrivateRoute>
+          }
+      />
+        <Route
+            path='/adminHome'
+            element={
+                <PrivateRoute
+                    requiredAuths={[]}
+                    element={<AdminHomePage />}
+                ></PrivateRoute>
+            }
+        />
+        <Route
+            path='/groups'
+            element={
+                <PrivateRoute
+                    requiredAuths={[]}
+                    element={<GroupsPage />}
+                ></PrivateRoute>
+            }
+        />
+        <Route
+            path='/groups/:groupId'
+            element={
+                <PrivateRoute
+                    requiredAuths={[]}
+                    element={<GroupDetailPage />}
+                ></PrivateRoute>
+            }
+        />
+        <Route
+            path='/groups/edit/:groupId'
+            element={
+                <PrivateRoute
+                    requiredAuths={[]}
+                    element={<GroupEditPage />}
+                ></PrivateRoute>
+            }
+        />
+        <Route
+            path='/admin/createGroup'
+            element={
+                <PrivateRoute
+                    requiredAuths={[]}
+                    element={<CreateGroupFormPage />}
+                ></PrivateRoute>
+            }
+        />
 
       <Route path='*' element={<div>Not Found</div>} />
     </Routes>
