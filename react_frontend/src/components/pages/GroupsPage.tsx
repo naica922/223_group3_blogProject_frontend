@@ -4,7 +4,7 @@ import CreateGroupFormPage from "./CreateGroupFormPage";
 export default function GroupsPage() {
     return (
         <>
-            <div>Group Page</div>
+            <h1>Groups</h1>
             <CreateGroupFormPage></CreateGroupFormPage></>
     );
 }
