@@ -12,6 +12,8 @@ import { Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import ActiveUserContext from '../../../Contexts/ActiveUserContext';
+import AuthenticatedHomePage from '../../pages/AuthenticatedHomePage';
+
 
 const validationSchema = Yup.object().shape({
   email: Yup.string(),
@@ -33,8 +35,7 @@ const Login = () => {
     login(values.email.toLowerCase(), values.password)
       .then(() => {
         console.log(values);
-
-        navigate('/');
+        navigate('/authenticatedHome');
       })
       .catch((error) => {
         if (

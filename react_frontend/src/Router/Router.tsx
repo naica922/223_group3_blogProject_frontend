@@ -1,11 +1,10 @@
-import { Route, Routes } from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import LoginPage from '../components/pages/LoginPage/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import HomePage from '../components/pages/HomePage';
 import UserTable from '../components/pages/UserPage/UserTable';
 import UserPage from '../components/pages/UserPage/UserPage';
-import AdminHomePage from "../components/pages/AdminHomePage";
-import UserLoggedInHomePage from "../components/pages/UserPage/UserLoggedInHomePage";
+import AuthenticatedHomePage from '../components/pages/AuthenticatedHomePage';
 import authorities from '../config/Authorities';
 import GroupDetailPage from "../components/pages/GroupDetailPage";
 import GroupEditPage from "../components/pages/GroupEditPage";
@@ -49,23 +48,14 @@ const Router = () => {
         }
       />
       <Route
-          path='/userHome'
+          path='/authenticatedHome'
           element={
               <PrivateRoute
                   requiredAuths={[]}
-                  element={<UserLoggedInHomePage />}
+                  element={< AuthenticatedHomePage />}
               ></PrivateRoute>
           }
       />
-        <Route
-            path='/adminHome'
-            element={
-                <PrivateRoute
-                    requiredAuths={[]}
-                    element={<AdminHomePage />}
-                ></PrivateRoute>
-            }
-        />
         <Route
             path='/groups'
             element={
@@ -88,16 +78,16 @@ const Router = () => {
             path='/groups/edit/:groupId'
             element={
                 <PrivateRoute
-                    requiredAuths={[]}
+                    requiredAuths={[authorities.GROUP_MODIFY]}
                     element={<GroupEditPage />}
                 ></PrivateRoute>
             }
         />
         <Route
-            path='/admin/createGroup'
+            path='/groups/createGroup'
             element={
                 <PrivateRoute
-                    requiredAuths={[]}
+                    requiredAuths={[authorities.GROUP_CREATE]}
                     element={<CreateGroupFormPage />}
                 ></PrivateRoute>
             }
