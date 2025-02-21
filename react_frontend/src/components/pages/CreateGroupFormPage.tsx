@@ -4,6 +4,12 @@ import GroupService from '../../Services/GroupService';
 import { Form, Formik } from "formik";
 import { Button } from "@mui/material";
 
+/**
+ * Class description:
+ * This class displays a form for admins to create a new group with its attributes.
+ * When the form is submitted, it should be visible in the groups list.
+ */
+
 export default function CreateGroupFormPage() {
     const navigate = useNavigate();
 
@@ -21,13 +27,19 @@ export default function CreateGroupFormPage() {
         }));
     };
 
+    /**
+     * method description:
+     * The method handleCreateGroup is responsible to create the new group.
+     * It calls the service and if the operation was successful, the user gets redirected to
+     * the intern home page, otherwise an error is thrown.
+     */
+
     const handleCreateGroup = async () => {
         const newGroup = {
             ...groupData,
             id: '',
             memberEmails: []
         };
-
         try {
             await GroupService.addGroup(newGroup);
             navigate('/authenticatedHome');
