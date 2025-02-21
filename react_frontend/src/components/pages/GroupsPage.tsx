@@ -1,7 +1,10 @@
 import React from 'react';
+import CreateGroupFormPage from "./CreateGroupFormPage";
 
 export default function GroupsPage() {
     return (
-        <div>GroupsPage</div>
+        <>
+            <div>Group Page</div>
+            <CreateGroupFormPage></CreateGroupFormPage></>
     );
 }
