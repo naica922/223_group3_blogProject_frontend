@@ -33,7 +33,7 @@ yarn install
 3. Run frontend <br>
 You can start our frontend with the following command and open localhost:3030.
 ```
-	yarn start
+yarn start
 ```
 
 
