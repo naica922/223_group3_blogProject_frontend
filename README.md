@@ -26,6 +26,8 @@ git clone https://github.com/naica922/223_group3_blogProject_frontend
 The second step is installing yarn (note: you should be in the react_frontend folder):
 ```
 npm install - - global yarn
+```
+```
 yarn install
 ```
 3. Run frontend <br>
