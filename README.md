@@ -1,4 +1,4 @@
-# 223_blogProject_frontend
+# 223_group3_blogProject_frontend
 
 ## Allgemein
 
