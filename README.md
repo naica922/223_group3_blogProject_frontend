@@ -19,7 +19,7 @@ Ausgangslage vom Projekt war ein Template welches mit Security, der Gruppenspezi
 First you should clone our Github repository which you can find here: https://github.com/naica922/223_group3_blogProject_frontend <br>
 Enter the following command in the cmd to clone the repository locally.
 ```
-git clone https://github.com/naica922/223_group3_blogProject_frontend
+git clone https://github.com/naica922/223_group3_blogProject_frontend.git
 ```
 
 2. Yarn <br>
