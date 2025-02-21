@@ -13,7 +13,7 @@ const GroupService = {
     },
 
     // Create group (Admins)
-    addGroup: (group: Group) => {
+    addGroup: (group: { group_name: string; group_logo: string; group_motto: string; id: string; memberEmails: any[] }) => {
         return api.post('/groups', group);
     },
 
