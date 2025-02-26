@@ -18,7 +18,7 @@ const GroupService = {
         return api.post('/groups/', group);
     },
 
-    // ✅ Fixed: Update group by ID (Admins)
+    // Update group by ID (Admins)
     updateGroup: (groupId: string, updatedData: Partial<Group>) => {
         return api.put(`/groups/${groupId}`, updatedData);
     },
@@ -28,17 +28,17 @@ const GroupService = {
         return api.delete(`/groups/${groupId}`);
     },
 
-    // ✅ Fixed: Get members of a specific group
+    // Get members of a specific group
     getGroupMembers: (groupId: string) => {
         return api.get(`/groups/${groupId}/members`);
     },
 
-    // ✅ Fixed: Add user to a specific group
+    // Add user to a specific group
     addUserToGroup: (groupId: string, userId: string) => {
         return api.post(`/groups/${groupId}/users`, { userId });
     },
 
-    // ✅ Fixed: Remove user from a specific group
+    // Remove user from a specific group
     removeUserFromGroup: (groupId: string, userId: string) => {
         return api.delete(`/groups/${groupId}/users/${userId}`);
     }

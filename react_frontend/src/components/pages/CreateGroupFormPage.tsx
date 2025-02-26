@@ -44,7 +44,7 @@ export default function CreateGroupFormPage() {
         try {
             console.log("Sending group data:", newGroup);
             await GroupService.addGroup(newGroup);
-            navigate('/authenticatedHome');
+            navigate('/admin/groups');
         } catch (error) {
             console.error("Error creating group:", error);
         }
