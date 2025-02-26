@@ -6,6 +6,9 @@ import AuthorityService from "../Services/AuthorityService";
 import UserService from "../Services/UserService";
 import { User } from "../types/models/User.model";
 import { Nullable } from "../types/Nullable";
+import * as jwt from "jsonwebtoken";
+import {JwtPayload} from "jsonwebtoken";
+import {unmountComponentAtNode} from "react-dom";
 
 /**
  * USER_DATA_LOCAL_STORAGE_KEY defines the localStorageKey in which the
@@ -138,7 +141,11 @@ export const ActiveUserContextProvider = ({
         TOKEN_LOCAL_STORAGE_KEY,
         response.headers.authorization
       );
-      setActiveUser(response.data);
+      const tokenString = response.headers.authorization.replace('Bearer ', '');
+      const token = jwt.decode(tokenString) as JwtPayload;
+        UserService.getUser(token.sub!).then((user: User) => {
+          setActiveUser(user);
+        })
       return true;
     });
     return false;

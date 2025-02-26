@@ -1,4 +1,4 @@
-# 223_blogProject_frontend
+# 223_group3_blogProject_frontend
 
 ## Allgemein
 
@@ -9,6 +9,7 @@
 Giulia, Naima, Andrin
 
 #### Projekt Dokumentation: 
+https://github.com/naica922/223_group3_blogProject_frontend/tree/main/Documentation
 
 ## Beschreibung:
 Dieses Projekt wurde von Giulia, Naima und Andrin im Rahmen vom üK 223 Multiuser Fullstack Application ersrellt. Das Projekt ist eine Blog Seite mit der Individuellen Entity "Groups". <br>

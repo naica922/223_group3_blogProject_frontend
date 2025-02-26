@@ -1,11 +1,10 @@
-import { Route, Routes } from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import LoginPage from '../components/pages/LoginPage/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import HomePage from '../components/pages/HomePage';
 import UserTable from '../components/pages/UserPage/UserTable';
 import UserPage from '../components/pages/UserPage/UserPage';
-import AdminHomePage from "../components/pages/AdminHomePage";
-import UserLoggedInHomePage from "../components/pages/UserPage/UserLoggedInHomePage";
+import AuthenticatedHomePage from '../components/pages/AuthenticatedHomePage';
 import authorities from '../config/Authorities';
 import GroupDetailPage from "../components/pages/GroupDetailPage";
 import GroupEditPage from "../components/pages/GroupEditPage";
@@ -49,25 +48,16 @@ const Router = () => {
         }
       />
       <Route
-          path='/userHome'
+          path='/authenticatedHome'
           element={
               <PrivateRoute
                   requiredAuths={[]}
-                  element={<UserLoggedInHomePage />}
+                  element={< AuthenticatedHomePage />}
               ></PrivateRoute>
           }
       />
         <Route
-            path='/adminHome'
-            element={
-                <PrivateRoute
-                    requiredAuths={[]}
-                    element={<AdminHomePage />}
-                ></PrivateRoute>
-            }
-        />
-        <Route
-            path='/groups'
+            path='/admin/groups'
             element={
                 <PrivateRoute
                     requiredAuths={[]}
@@ -76,7 +66,7 @@ const Router = () => {
             }
         />
         <Route
-            path='/groups/:groupId'
+            path='/admin/groups/:groupId'
             element={
                 <PrivateRoute
                     requiredAuths={[]}
@@ -85,7 +75,7 @@ const Router = () => {
             }
         />
         <Route
-            path='/groups/edit/:groupId'
+            path='/admin/groups/edit/:groupId'
             element={
                 <PrivateRoute
                     requiredAuths={[]}
@@ -94,11 +84,20 @@ const Router = () => {
             }
         />
         <Route
-            path='/admin/createGroup'
+            path='/admin/groups/create'
             element={
                 <PrivateRoute
                     requiredAuths={[]}
                     element={<CreateGroupFormPage />}
+                ></PrivateRoute>
+            }
+        />
+        <Route
+            path='/user/group'
+            element={
+                <PrivateRoute
+                    requiredAuths={[]}
+                    element={<GroupDetailPage />}
                 ></PrivateRoute>
             }
         />
