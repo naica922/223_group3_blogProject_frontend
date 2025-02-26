@@ -7,7 +7,7 @@ export default function GroupDetailPage() {
     const { groupId } = useParams();
     const navigate = useNavigate();
 
-
+    
     const [group, setGroup] = useState<{
         id: string;
         groupName: string;
