@@ -1,4 +1,4 @@
-describe('Create Image-Post', () => {
+describe('CREATE Group', () => {
     // 1: Login
     it('log in user', () => {
         cy.visit('/login');
