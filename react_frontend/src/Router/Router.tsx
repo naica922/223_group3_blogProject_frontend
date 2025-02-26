@@ -84,10 +84,10 @@ const Router = () => {
             }
         />
         <Route
-            path='/groups/create'
+            path='/groups/createGroups'
             element={
                 <PrivateRoute
-                    requiredAuths={[authorities.GROUP_CREATE]}
+                    requiredAuths={[]}
                     element={<CreateGroupFormPage />}
                 ></PrivateRoute>
             }
