@@ -36,7 +36,7 @@ export default function GroupsPage() {
             <Button
                 variant="contained"
                 color="primary"
-                onClick={() => navigate('/groups/createGroup')}
+                onClick={() => navigate('/groups/create')}
                 style={{ marginBottom: '15px' }}
             >
                 Create Group
