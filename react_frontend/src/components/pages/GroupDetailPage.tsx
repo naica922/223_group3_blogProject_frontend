@@ -43,7 +43,7 @@ export default function GroupDetailPage() {
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={() => navigate('/groups')}
+                        onClick={() => navigate('/admin/groups')}
                         style={{ marginTop: '15px' }}
                     >
                         Back to Groups
