@@ -36,7 +36,7 @@ export default function GroupsPage() {
             <Button
                 variant="contained"
                 color="primary"
-                onClick={() => navigate('/groups/create')}
+                onClick={() => navigate('/admin/groups/create')}
                 style={{ marginBottom: '15px' }}
             >
                 Create Group
@@ -50,14 +50,14 @@ export default function GroupsPage() {
                             <Button
                                 variant="contained"
                                 color="primary"
-                                onClick={() => navigate(`/groups/edit/${group.id}`)}
+                                onClick={() => navigate(`/admin/groups/edit/${group.id}`)}
                             >
                                 Edit Group
                             </Button>
                             <Button
                                 variant="contained"
                                 color="secondary"
-                                onClick={() => navigate(`/groups/${group.id}`)}
+                                onClick={() => navigate(`/admin/groups/${group.id}`)}
                             >
                                 View Group
                             </Button>
