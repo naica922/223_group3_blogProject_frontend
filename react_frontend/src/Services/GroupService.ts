@@ -14,8 +14,8 @@ const GroupService = {
     },
 
     // Create group (Admins)
-    addGroup: (group: { group_name: string; group_logo: string; group_motto: string; id: string; memberEmails: any[] }) => {
-        return api.post('/groups', group);
+    addGroup: (group: { groupName: string; logo: string; motto: string; members: any[] }) => {
+        return api.post('/groups/', group);
     },
 
     // ✅ Fixed: Update group by ID (Admins)
