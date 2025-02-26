@@ -2,11 +2,12 @@ import api from '../config/Api';
 import { Group } from '../types/models/Group.model';
 
 const GroupService = {
+    // Get all groups
     getAllGroups: () => {
         return api.get(`/groups`);
     },
 
-    // Get Group by id
+    // Get Group by ID
     getGroup: async (groupId: string): Promise<Group> => {
         const { data } = await api.get<Group>(`/groups/${groupId}`);
         return data;
@@ -18,8 +19,8 @@ const GroupService = {
     },
 
     // Update group by ID (Admins)
-    updateGroup: (group: Group) => {
-        return api.put(`/groups/${group.id}`, group);
+    updateGroup: (groupId: string, updatedData: Partial<Group>) => {
+        return api.put(`/groups/${groupId}`, updatedData);
     },
 
     // Delete group (Admins)
@@ -27,19 +28,19 @@ const GroupService = {
         return api.delete(`/groups/${groupId}`);
     },
 
-    // Get group members
-    getGroupMembers: () => {
-        return api.get(`/groups`);
+    // Get members of a specific group
+    getGroupMembers: (groupId: string) => {
+        return api.get(`/groups/${groupId}/members`);
     },
 
-    // Add user to group
+    //Add user to a specific group
     addUserToGroup: (groupId: string, userId: string) => {
-        return api.post(`/groups`, { userId });
+        return api.post(`/groups/${groupId}/users`, { userId });
     },
 
-    // Remove user from group
+     //Remove user from a specific group
     removeUserFromGroup: (groupId: string, userId: string) => {
-        return api.delete(`/groups`);
+        return api.delete(`/groups/${groupId}/users/${userId}`);
     }
 };
 
