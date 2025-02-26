@@ -33,12 +33,12 @@ const GroupService = {
         return api.get(`/groups/${groupId}/members`);
     },
 
-    //Add user to a specific group
+    // Add user to a specific group
     addUserToGroup: (groupId: string, userId: string) => {
         return api.post(`/groups/${groupId}/users`, { userId });
     },
 
-     //Remove user from a specific group
+    // Remove user from a specific group
     removeUserFromGroup: (groupId: string, userId: string) => {
         return api.delete(`/groups/${groupId}/users/${userId}`);
     }
