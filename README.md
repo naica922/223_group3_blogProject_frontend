@@ -52,5 +52,8 @@ yarn start
 - http://localhost:3000/authenticatedHome
 - http://localhost:3000/user/group
 
+## Swagger
+http://localhost:8080/swagger-ui/index.html#/
+
 
  
