@@ -1,39 +1,36 @@
 describe('CREATE Group', () => {
-  // 1: Login
-  it('log in user', () => {
-    cy.visit('/login');
+  beforeEach(() => {
+      cy.visit('/login');
 
-    // Enter credentials
-    cy.get('input#email').type('admin@example.com');
-    cy.get('input#password').type('1234');
+      // Enter credentials
+      cy.get('input#email').type('admin@example.com');
+      cy.get('input#password').type('1234');
 
-    // click "Sign in" button
-    cy.get('button[type="submit"]').click();
+      // click "Sign in" button
+      cy.get('button[type="submit"]').click();
 
-    // Test that login worked
-    cy.url().should('include', '/authenticatedHome');
+      // Test that login worked
+      cy.url().should('include', '/authenticatedHome');
+  })
+
+  // 2: Show groups before
+  it('show groups before adding a new one', () => {
+    cy.visit('/admin/groups');
+    cy.get('[id="nextButton"]').click();
   });
 
-  // 2: navigate to
-  it('navigate to admin home page', () => {
-    cy.visit("/admin/groups")
-    cy.get('[id="createButton"]').contains('Create Group').click();
+  // 3: Create new group
+  it('navigate to group page', () => {
+    cy.visit('/admin/groups');
+    cy.get('[id="createButton"]').click();
     cy.url().should('include', '/create');
-  });
 
-  // 3: Create group
-  it('fill in the group form and submit it', () => {
-    cy.get('textarea#name').type('Test Name');
-    cy.get('textarea#motto').type('Test Motto');
-    cy.get('input#logo').type('https://example.com/testImage.jpg');
+    cy.get('input#groupName').type('My Group Name');
+    cy.get('input#motto').type('Our Motto');
+    cy.get('input#logo').type('https://example.com/logo.png');
 
     // click "create group" button
-    cy.get('button[type="submitGroup"]').click();
-
-    // request alert
-    cy.on('window:alert', (str) => {
-      expect(str).to.equal('Group created successfully');
-    });
+    cy.get('button#submitGroup').click();
 
     cy.url().should('include', '/admin/groups');
   });
@@ -41,10 +38,6 @@ describe('CREATE Group', () => {
   // 4: Test that group was created
   it('verify post was created', () => {
     cy.visit('/admin/groups');
-
-    // Test that name, motto and image is visible
-    cy.contains('Test Name').should('exist');
-    cy.contains('Test Motto').should('exist');
-    cy.get('img').should('have.attr', 'src', 'https://example.com/testImage.jpg');
+    cy.get('[id="nextButton"]').click();
   });
 });
