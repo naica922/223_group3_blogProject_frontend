@@ -4,5 +4,5 @@ export interface Group {
     groupName: string;
     motto: string;
     logo: string;
-    memberEmails: string[];
+    members: { id: string; username: string; email: string }[];
 }
