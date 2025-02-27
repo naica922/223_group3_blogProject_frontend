@@ -24,11 +24,6 @@ const UserService = {
   deleteUser: (id: string) => {
     return api.delete(`/user/${id}`);
   },
-
-  // NEW: Get all users without a group
-  getUsersWithoutGroup: () => {
-    return api.get(`/user/users-without-group`);
-  },
 };
 
 export default UserService;

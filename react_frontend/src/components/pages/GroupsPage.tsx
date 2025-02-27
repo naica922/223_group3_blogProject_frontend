@@ -79,7 +79,7 @@ export default function GroupsPage() {
                         ))}
                     </ul>
 
-                    {/* Pagination Controls */}
+                    {/* Pagination */}
                     <div style={{ marginTop: '15px' }}>
                         <Button
                             variant="contained"

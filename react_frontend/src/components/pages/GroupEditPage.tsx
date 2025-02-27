@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import GroupService from '../../Services/GroupService';
-import UserService from '../../Services/UserService';
 import { Form, Formik } from "formik";
-import { Button, Checkbox, FormControlLabel, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 export default function EditGroupFormPage() {
     const navigate = useNavigate();
@@ -15,8 +14,6 @@ export default function EditGroupFormPage() {
         logo: '',
         members: [] as string[], // Store selected user IDs
     });
-
-    const [availableUsers, setAvailableUsers] = useState<{ id: string; username: string }[]>([]);
 
     useEffect(() => {
         const fetchGroupDetails = async () => {
@@ -39,20 +36,6 @@ export default function EditGroupFormPage() {
                     logo: groupResponse.logo,
                     members: existingMemberIds // Store only the IDs
                 });
-
-                // Fetch users who are **not** assigned to any group
-                const usersResponse = await UserService.getUsersWithoutGroup();
-                console.log("Fetched available users:", usersResponse.data); // Debugging
-
-                // Add existing group members to the available user list
-                const allSelectableUsers = [...usersResponse.data, ...groupResponse.members];
-
-                // Remove duplicates (users who are already listed in available users)
-                const uniqueUsers = allSelectableUsers.filter(
-                    (user, index, self) => index === self.findIndex((u) => u.id === user.id)
-                );
-
-                setAvailableUsers(uniqueUsers);
             } catch (error) {
                 console.error("Error fetching group details or users:", error);
             }
@@ -68,15 +51,6 @@ export default function EditGroupFormPage() {
         setGroupData((prevData) => ({
             ...prevData,
             [name]: value
-        }));
-    };
-
-    const toggleUserSelection = (userId: string) => {
-        setGroupData(prevData => ({
-            ...prevData,
-            members: prevData.members.includes(userId)
-                ? prevData.members.filter(id => id !== userId) // Remove if already selected
-                : [...prevData.members, userId] // Add if not selected
         }));
     };
 
@@ -131,30 +105,6 @@ export default function EditGroupFormPage() {
                             value={groupData.logo}
                             onChange={handleInputChange}
                         />
-
-                        <h3>Edit Members</h3>
-                        <p>Select/Deselect members to update the group</p>
-
-                        {availableUsers.length > 0 ? (
-                            availableUsers.map(user => (
-                                <FormControlLabel
-                                    key={user.id}
-                                    control={
-                                        <Checkbox
-                                            checked={groupData.members.includes(user.id)}
-                                            onChange={() => toggleUserSelection(user.id)}
-                                            sx={{
-                                                color: groupData.members.includes(user.id) ? 'blue' : undefined,
-                                            }}
-                                        />
-                                    }
-                                    label={user.username}
-                                />
-                            ))
-                        ) : (
-                            <p>No available users.</p>
-                        )}
-
                         <Button type="submit" variant="contained" color="primary" style={{ marginTop: '20px' }}>
                             Update Group
                         </Button>
