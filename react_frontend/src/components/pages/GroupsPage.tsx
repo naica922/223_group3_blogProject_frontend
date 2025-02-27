@@ -34,6 +34,7 @@ export default function GroupsPage() {
         <div>
             <h1>Groups</h1>
             <Button
+                id="createButton"
                 variant="contained"
                 color="primary"
                 onClick={() => navigate('/admin/groups/create')}
