@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GroupService from '../../Services/GroupService';
+import UserService from '../../Services/UserService'; // We need this to fetch users
 import { Form, Formik } from "formik";
-import { Button } from "@mui/material";
+import { Button, Checkbox, FormControlLabel } from "@mui/material";
 
 /**
  * Class description:
@@ -17,13 +18,39 @@ export default function CreateGroupFormPage() {
         groupName: '',
         motto: '',
         logo: '',
+        members: [] as string[], // Store selected user IDs
     });
+
+    const [availableUsers, setAvailableUsers] = useState<{ id: string; username: string }[]>([]);
+
+    // Fetch users who are not in any group
+    useEffect(() => {
+        const fetchAvailableUsers = async () => {
+            try {
+                const response = await UserService.getUsersWithoutGroup();
+                setAvailableUsers(response.data);
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        };
+        fetchAvailableUsers();
+    }, []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setGroupData((prevData) => ({
             ...prevData,
             [name]: value
+        }));
+    };
+
+    // Toggle user selection
+    const toggleUserSelection = (userId: string) => {
+        setGroupData(prevData => ({
+            ...prevData,
+            members: prevData.members.includes(userId)
+                ? prevData.members.filter(id => id !== userId) // Uncheck
+                : [...prevData.members, userId] // Check
         }));
     };
 
@@ -38,7 +65,7 @@ export default function CreateGroupFormPage() {
             groupName: groupData.groupName,
             motto: groupData.motto,
             logo: groupData.logo,
-            members: []
+            members: groupData.members // Send selected user IDs
         };
 
         try {
@@ -80,6 +107,25 @@ export default function CreateGroupFormPage() {
                             value={groupData.logo}
                             onChange={handleInputChange}
                         />
+
+                        <h3>Select Members</h3>
+                        {availableUsers.length > 0 ? (
+                            availableUsers.map(user => (
+                                <FormControlLabel
+                                    key={user.id}
+                                    control={
+                                        <Checkbox
+                                            checked={groupData.members.includes(user.id)}
+                                            onChange={() => toggleUserSelection(user.id)}
+                                        />
+                                    }
+                                    label={user.username}
+                                />
+                            ))
+                        ) : (
+                            <p>No available users.</p>
+                        )}
+
                         <Button type="submit" id="submitGroup">Create Group</Button>
                     </Form>
                 )}
