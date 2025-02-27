@@ -92,6 +92,7 @@ export default function GroupsPage() {
                             Page {currentPage} of {Math.ceil(groups.length / groupsPerPage)}
                         </span>
                         <Button
+                            id="nextButton"
                             variant="contained"
                             disabled={indexOfLastGroup >= groups.length}
                             onClick={() => setCurrentPage(prev => prev + 1)}

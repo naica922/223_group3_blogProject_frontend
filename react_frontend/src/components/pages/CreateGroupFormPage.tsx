@@ -87,6 +87,7 @@ export default function CreateGroupFormPage() {
                 {({ handleSubmit }) => (
                     <Form onSubmit={handleSubmit}>
                         <input
+                            id="groupName"
                             type="text"
                             name="groupName"
                             placeholder="Name"
@@ -94,6 +95,7 @@ export default function CreateGroupFormPage() {
                             onChange={handleInputChange}
                         />
                         <input
+                            id="motto"
                             type="text"
                             name="motto"
                             placeholder="Motto"
@@ -101,6 +103,7 @@ export default function CreateGroupFormPage() {
                             onChange={handleInputChange}
                         />
                         <input
+                            id="logo"
                             type="text"
                             name="logo"
                             placeholder="Logo"
