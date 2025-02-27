@@ -3,8 +3,6 @@ import GroupService from "../../Services/GroupService";
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@mui/material";
 
-//TODO: Use atomic design for some components for example the buttons
-
 export default function GroupsPage() {
     const [groups, setGroups] = useState<{ id: string, group_name: string }[]>([]);
     const navigate = useNavigate();

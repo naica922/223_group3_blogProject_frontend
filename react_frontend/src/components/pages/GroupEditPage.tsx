@@ -3,6 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import GroupService from '../../Services/GroupService';
 import { Button, TextField } from "@mui/material";
 
+/**
+ * Class description:
+ * The GroupEditPage class provides a form to edit an already
+ * existing form.
+ */
+
 export default function GroupEditPage() {
     const { groupId } = useParams();
     const navigate = useNavigate();

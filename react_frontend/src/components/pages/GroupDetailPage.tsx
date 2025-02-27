@@ -3,6 +3,12 @@ import { useParams, useNavigate } from 'react-router-dom';
 import GroupService from '../../Services/GroupService';
 import { Button } from "@mui/material";
 
+/**
+ * Class description:
+ * This class is responsible to display a group by its id.
+ * It communicates with the service and handles exceptions.
+ */
+
 export default function GroupDetailPage() {
     const { groupId } = useParams();
     const navigate = useNavigate();
