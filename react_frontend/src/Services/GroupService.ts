@@ -4,7 +4,7 @@ import { Group } from '../types/models/Group.model';
 const GroupService = {
     // Get all groups
     getAllGroups: () => {
-        return api.get(`/groups`);
+        return api.get(`/groups/all`);
     },
 
     // Get Group by ID

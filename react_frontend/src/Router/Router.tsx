@@ -60,7 +60,7 @@ const Router = () => {
             path='/admin/groups'
             element={
                 <PrivateRoute
-                    requiredAuths={[]}
+                    requiredAuths={[authorities.GROUP_READ]}
                     element={<GroupsPage />}
                 ></PrivateRoute>
             }
@@ -69,7 +69,7 @@ const Router = () => {
             path='/admin/groups/:groupId'
             element={
                 <PrivateRoute
-                    requiredAuths={[]}
+                    requiredAuths={[authorities.GROUP_CREATE]}
                     element={<GroupDetailPage />}
                 ></PrivateRoute>
             }
@@ -78,7 +78,7 @@ const Router = () => {
             path='/admin/groups/edit/:groupId'
             element={
                 <PrivateRoute
-                    requiredAuths={[]}
+                    requiredAuths={[authorities.GROUP_MODIFY]}
                     element={<GroupEditPage />}
                 ></PrivateRoute>
             }
@@ -87,7 +87,7 @@ const Router = () => {
             path='/admin/groups/create'
             element={
                 <PrivateRoute
-                    requiredAuths={[]}
+                    requiredAuths={[authorities.GROUP_MODIFY]}
                     element={<CreateGroupFormPage />}
                 ></PrivateRoute>
             }
