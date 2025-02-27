@@ -52,6 +52,12 @@ yarn start
 - http://localhost:3000/authenticatedHome
 - http://localhost:3000/user/group
 
+### Login credentials
+| E-Mail             | Password |
+| ------------------ | -------- |
+| user@example.com   | 1234     |
+| admin@example.com  | 1234     |
+
 ## Swagger
 http://localhost:8080/swagger-ui/index.html#/
 
