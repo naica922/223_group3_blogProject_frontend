@@ -7,6 +7,12 @@ const GroupService = {
         return api.get(`/groups/all`);
     },
 
+    //Get all groups for user
+    getGroupForUser: async (): Promise<Group> => {
+        const { data } = await api.get<Group>(`/groups/`);
+        return data;
+    },
+
     // Get Group by ID
     getGroup: async (groupId: string): Promise<Group> => {
         const { data } = await api.get<Group>(`/groups/${groupId}`);

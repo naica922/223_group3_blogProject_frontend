@@ -60,7 +60,7 @@ const Router = () => {
             path='/admin/groups'
             element={
                 <PrivateRoute
-                    requiredAuths={[authorities.GROUP_READ]}
+                    requiredAuths={[authorities.GROUP_READ_ALL]}
                     element={<GroupsPage />}
                 ></PrivateRoute>
             }
@@ -69,7 +69,7 @@ const Router = () => {
             path='/admin/groups/:groupId'
             element={
                 <PrivateRoute
-                    requiredAuths={[authorities.GROUP_READ]}
+                    requiredAuths={[authorities.GROUP_READ_ALL]}
                     element={<GroupDetailPage />}
                 ></PrivateRoute>
             }

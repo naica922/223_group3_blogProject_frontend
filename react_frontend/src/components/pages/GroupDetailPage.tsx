@@ -24,21 +24,25 @@ export default function GroupDetailPage() {
     useEffect(() => {
         const fetchGroupDetails = async () => {
             try {
-                const response = await GroupService.getGroup(groupId!);
-                console.log("API Response:", response); // Debugging
+                if (groupId == null) {
+                    const userResponse = await GroupService.getGroupForUser();
+                    setGroup(userResponse);
+                } else {
+                    const response = await GroupService.getGroup(groupId!);
+                    console.log("API Response:", response); // Debugging
 
-                setGroup({
-                    ...response,
-                    members: response.members || [], // Ensure members exists
-                });
+                    setGroup({
+                        ...response,
+                        members: response.members || [], // Ensure members exists
+                    });                    setGroup(response);
+                }
+
             } catch (error) {
                 console.error("Error fetching group details:", error);
             }
         };
 
-        if (groupId) {
-            fetchGroupDetails();
-        }
+        fetchGroupDetails();
     }, [groupId]);
 
 
