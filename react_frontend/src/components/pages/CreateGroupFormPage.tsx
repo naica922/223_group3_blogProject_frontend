@@ -78,7 +78,7 @@ export default function CreateGroupFormPage() {
                             value={groupData.group_logo}
                             onChange={handleInputChange}
                         />
-                        <Button type="submit">Create Group</Button>
+                        <Button type="submit" id="submitGroup">Create Group</Button>
                     </Form>
                 )}
             </Formik>
