@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GroupService from '../../Services/GroupService';
+import UserService from '../../Services/UserService'; // We need this to fetch users
 import { Form, Formik } from "formik";
-import { Button } from "@mui/material";
+import { Button, Checkbox, FormControlLabel } from "@mui/material";
 
 /**
  * Class description:
@@ -14,9 +15,10 @@ export default function CreateGroupFormPage() {
     const navigate = useNavigate();
 
     const [groupData, setGroupData] = useState({
-        group_name: '',
-        group_logo: '',
-        group_motto: '',
+        groupName: '',
+        motto: '',
+        logo: '',
+        members: [] as string[], // Store selected user IDs
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,21 +30,23 @@ export default function CreateGroupFormPage() {
     };
 
     /**
-     * method description:
-     * The method handleCreateGroup is responsible to create the new group.
-     * It calls the service and if the operation was successful, the user gets redirected to
-     * the intern home page, otherwise an error is thrown.
+     * Method description:
+     * The method handleCreateGroup is responsible for creating the new group.
+     * It calls the service and if the operation is successful, the user gets redirected
+     * to the home page, otherwise an error is thrown.
      */
-
     const handleCreateGroup = async () => {
         const newGroup = {
-            ...groupData,
-            id: '',
-            memberEmails: []
+            groupName: groupData.groupName,
+            motto: groupData.motto,
+            logo: groupData.logo,
+            members: groupData.members // Send selected user IDs
         };
+
         try {
+            console.log("Sending group data:", newGroup);
             await GroupService.addGroup(newGroup);
-            navigate('/authenticatedHome');
+            navigate('/admin/groups');
         } catch (error) {
             console.error("Error creating group:", error);
         }
@@ -60,25 +64,25 @@ export default function CreateGroupFormPage() {
                         <input
                             id="groupName"
                             type="text"
-                            name="group_name"
+                            name="groupName"
                             placeholder="Name"
-                            value={groupData.group_name}
+                            value={groupData.groupName}
                             onChange={handleInputChange}
                         />
                         <input
                             id="motto"
                             type="text"
-                            name="group_motto"
+                            name="motto"
                             placeholder="Motto"
-                            value={groupData.group_motto}
+                            value={groupData.motto}
                             onChange={handleInputChange}
                         />
                         <input
                             id="logo"
                             type="text"
-                            name="group_logo"
+                            name="logo"
                             placeholder="Logo"
-                            value={groupData.group_logo}
+                            value={groupData.logo}
                             onChange={handleInputChange}
                         />
                         <Button type="submit" id="submitGroup">Create Group</Button>

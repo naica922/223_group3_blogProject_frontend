@@ -37,5 +37,29 @@ You can start our frontend with the following command and open localhost:3030.
 yarn start
 ```
 
+## URLs
+- http://localhost:3000/login
+- http://localhost:3000/
+
+### Admin
+- http://localhost:3000/authenticatedHome
+- http://localhost:3000/admin/groups
+- http://localhost:3000/admin/groups/uuid (group detail view)
+- http://localhost:3000/admin/groups/edit/uuid (edit group)
+- http://localhost:3000/admin/groups/create
+
+### User
+- http://localhost:3000/authenticatedHome
+- http://localhost:3000/user/group
+
+### Login credentials
+| E-Mail             | Password |
+| ------------------ | -------- |
+| user@example.com   | 1234     |
+| admin@example.com  | 1234     |
+
+## Swagger
+http://localhost:8080/swagger-ui/index.html#/
+
 
  

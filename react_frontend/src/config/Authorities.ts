@@ -10,6 +10,7 @@ enum authorities {
   GROUP_CREATE = "GROUP_CREATE",
   GROUP_READ = "GROUP_READ",
   GROUP_DELETE = "GROUP_DELETE",
+  GROUP_READ_ALL = "GROUP_READ_ALL",
 }
 
 export default authorities;
